@@ -2,8 +2,7 @@
 #include "Sigfox.h"
 
 DigitalOut myled(LED1);
-Serial at(D1, D0);
-Sigfox sigfox(&at);
+Sigfox sigfox(D1, D0);
 
 int main() {
 	wait(2);

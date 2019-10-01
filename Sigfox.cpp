@@ -1,7 +1,7 @@
 #include "Sigfox.h"
 
-Sigfox::Sigfox(Serial *at) {
-	_at = at;
+Sigfox::Sigfox(PinName tx, PinName rx): Serial(tx, rx) {
+	
 }
 
 /**
@@ -10,8 +10,8 @@ Sigfox::Sigfox(Serial *at) {
   * @retval 1 si OK, 0 sinon
   */
 bool Sigfox::ready() {
-	_at->printf("AT");
-	char c = _at->getc();
+	printf("AT");
+	char c = getc();
 	if(c == 'O')
 		return 1;
 	else
@@ -24,5 +24,5 @@ bool Sigfox::ready() {
   * @retval 
   */
 void Sigfox::send(s16 temp_air, u16 hum_air, s16 temp_sol, u16 hum_sol, u8 lum, u8 val_r, u8 val_g, u8 val_b) {
-	_at->printf("AT$SF=%04x%04x%04x%04x%02x%02x%02x%02x\r", temp_air, hum_air, temp_sol, hum_sol, lum, val_r, val_g, val_b);
+	printf("AT$SF=%04x%04x%04x%04x%02x%02x%02x%02x\r", temp_air, hum_air, temp_sol, hum_sol, lum, val_r, val_g, val_b);
 }

@@ -7,11 +7,9 @@ typedef uint8_t 	u8;
 typedef uint16_t 	u16;
 typedef int16_t 	s16;
 
-class Sigfox{
-	private: 
-		Serial *_at;
+class Sigfox: public Serial{
 	public:
-		Sigfox(Serial *at);
+		Sigfox(PinName tx, PinName rx);
 	
 		/**
 		* @brief  Tester si le module sigfox est pret
